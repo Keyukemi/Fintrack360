@@ -4,10 +4,6 @@
     { "src": "index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/bvn/(.*)", "dest": "/api/bvn/$1" },
-    { "src": "/api/credithistory/(.*)", "dest": "/api/credithistory/$1" },
-    { "src": "/api/account/(.*)", "dest": "/api/account/$1" },
-    { "src": "/api/identity/(.*)", "dest": "/api/identity/$1" },
     { "src": "/api/(.*)", "dest": "/index.js" }
   ]
 }

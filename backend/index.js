@@ -19,10 +19,16 @@ app.use((req, res, next)=>{
 
 
 //routes
+
 app.use('/api/bvn',bvnRouter)
 app.use('/api/',creditHistoryRouter)
 app.use('/api/',accountRouter)
 app.use('/api/',identityRouter)
+
+app.use("/",(req, res)=>{
+  res.send("server is running, mafo")
+});
+
 
 mongoose.connect(process.env.MONGO_URI)
   .then(()=>{
