@@ -44,8 +44,6 @@ export const accountNumberLookup = async (req, res) => {
 
         const nipCode = selectedBank.nip_code;
 
-        console.log(bankName, nipCode)
-
         const accountLookupResponse = await axios.post('https://api.withmono.com/v3/lookup/account_number', {
             nip_code: nipCode,
             account_number: req.body.account_number

@@ -67,7 +67,6 @@ export const initiateBVN = async (req, res) => {
     if (!user) {
       user = new User({ bvn, amount});
       await user.save();
-      console.log(bvn, amount)
     }
 
     const response = await axios.post('https://api.withmono.com/v2/lookup/bvn/initiate', {
