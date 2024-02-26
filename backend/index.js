@@ -10,7 +10,7 @@ import identityRouter from "./routes/identity.route.js"
 const app = express()  
 
 //middleware
-app.use(cors())
+app.use(cors(origin: "http://localhost:4000"))
 app.use(express.json())
 app.use((req, res, next)=>{
   console.log(req.path, req.method)
