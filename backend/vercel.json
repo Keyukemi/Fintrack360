@@ -8,14 +8,14 @@
       "src": "/(.*)", 
       "dest": "/index.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"], 
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" } 
-      ],
-      "config": {
-        "api": {
-          "maxDuration": 60 
-        }
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
       }
     }
-  ]
+  ],
+  "functions": {
+    "api": {
+      "maxDuration": 60
+    }
+  }
 }
