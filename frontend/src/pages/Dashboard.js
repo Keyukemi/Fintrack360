@@ -1,62 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Identity from '../components/Identity';
 import AllBankAccounts from '../components/BankAccounts';
 import CreditHistory from '../components/CreditHistory';
+import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
 
 const Dashboard = () => {
-  const [showCreditHistory, setShowCreditHistory] = useState(false);
-  const [showBankAccounts, setShowBankAccounts] = useState(false);
-  const [bankAccountsFetched, setBankAccountsFetched] = useState(false);
-  const [creditHistoryFetched, setCreditHistoryFetched] = useState(false);
+  const [sectionIndex, setSectionIndex] = useState(0);
+  const sections = [Identity, AllBankAccounts, CreditHistory];
+  const CurrentSection = sections[sectionIndex];
 
-  const handleBankAccountsFetch = () => {
-    setBankAccountsFetched(true);
+  const scrollToNextSection = () => {
+    const nextSectionIndex = Math.min(sectionIndex + 1, sections.length - 1);
+    setSectionIndex(nextSectionIndex);
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
   };
 
-  const handleCreditHistoryFetch = () => {
-    setCreditHistoryFetched(true);
+  const scrollToPrevSection = () => {
+    const prevSectionIndex = Math.max(sectionIndex - 1, 0);
+    setSectionIndex(prevSectionIndex);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
-
-  useEffect(() => {
-    if (bankAccountsFetched) {
-      setShowBankAccounts(true);
-    }
-  }, [bankAccountsFetched]);
-
-  useEffect(() => {
-    if (creditHistoryFetched) {
-      setShowCreditHistory(true);
-    }
-  }, [creditHistoryFetched]);
 
   return (
-    <div className="container mx-auto mt-10 bg-headline min-h-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
-        <div className="bg-white p-4  shadow-sm md:shadow-md rounded-md ">
-          <Identity />
-        </div>
-
-        <div className="bg-white p-4 shadow-sm md:shadow-md rounded-md text-center">
-          <h2 className="text-tertiary text-center mb-4 font-bold text-2xl">Bank Account</h2>
-          {!bankAccountsFetched && (
-            <button onClick={handleBankAccountsFetch} className="bg-primary text-white px-4 py-2 rounded-md mb-4">
-              Show Bank Accounts
-            </button>
-          )}
-          {showBankAccounts && <AllBankAccounts />}
-        </div>
+    <div className="h-screen  flex flex-col justify-center items-center">
+      <div className="text-center mb-4">
+        <FaChevronCircleUp onClick={scrollToPrevSection} size={36} className="cursor-pointer text-tertiary" />
       </div>
-      
-      <div className="mt-8 text-center ">
-        {!creditHistoryFetched && (
-          <button 
-            className="bg-tertiary hover:bg-primary text-center text-white font-bold py-2 px-4 rounded"
-            onClick={handleCreditHistoryFetch}
-          >
-            Show Credit History
-          </button>
-        )}
-        {showCreditHistory && <CreditHistory />}
+      <div className="bg-headline p-8 shadow-sm md:shadow-md rounded-md text-center w-full md:w-auto">
+        <CurrentSection />
+      </div>
+      <div className="text-center mt-4">
+        <FaChevronCircleDown onClick={scrollToNextSection} size={36} className="cursor-pointer text-tertiary" />
       </div>
     </div>
   );

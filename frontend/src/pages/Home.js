@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../config/axiosConfig';
 import RingLoader from "react-spinners/RingLoader";
 import { useNavigate } from 'react-router-dom';
 import Logo from "../images/fintrack360-logo.png"
@@ -42,7 +42,7 @@ const Home = () => {
         setLoading(true);
         const scope = "identity";
         try {
-            const response = await axios.post('/api/bvn/initiate', { bvn, amount, scope });
+            const response = await axiosInstance.post('/api/bvn/initiate', { bvn, amount, scope });
             setSessionId(response.data.data.session_id);
             setVerificationMethods(response.data.data.methods);
             setUserId(response.data.userId);
@@ -58,7 +58,7 @@ const Home = () => {
     const verifyBVN = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('/api/bvn/verify', { method: selectedMethod, sessionId });
+            const response = await axiosInstance.post('/api/bvn/verify', { method: selectedMethod, sessionId });
             const message = response.data.message;
             setStage('fetchBVN');
             setMessage(message);
@@ -72,7 +72,7 @@ const Home = () => {
     const fetchBVN = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('/api/bvn/details', { otp, sessionId, userId });
+            const response = await axiosInstance.post('/api/bvn/details', { otp, sessionId, userId });
             console.log(response.data)
             navigate('/dashboard');
         } catch (error) {

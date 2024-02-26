@@ -1,5 +1,4 @@
 {
-    "proxy": "https://fintrack360-backend.vercel.app/",
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
