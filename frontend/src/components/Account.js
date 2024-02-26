@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../config/axiosConfig';
 import Select from 'react-select';
 import RingLoader from "react-spinners/RingLoader";
 
@@ -19,7 +19,7 @@ const LinkAccount = ({ onCloseModal }) => {
 
   const fetchBanks = async () => {
     try {
-      const response = await axios.get('/api/bank-list');
+      const response = await axiosInstance.get('/api/bank-list');
       const options = response.data.map(bank => ({ value: bank, label: bank }));
       setBanks(options);
     } catch (error) {
@@ -35,7 +35,7 @@ const LinkAccount = ({ onCloseModal }) => {
   const handleAccountNumberLookup = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/account-number', {
+      const response = await axiosInstance.post('/api/account-number', {
         bankName: selectedBank,
         account_number: accountNumber
       });
@@ -58,7 +58,7 @@ const LinkAccount = ({ onCloseModal }) => {
 
   const handleContinue = () => {
     setModalOpen(false);
-    onCloseModal(); // Callback to close the modal
+    onCloseModal(); 
   };
 
   return (

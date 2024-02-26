@@ -20,6 +20,14 @@ const CreditHistoryTable = ({ creditHistory }) => {
 
   const isEligible = closedCount > openCount;
 
+  const formatRepaymentAmount = (amount) => {
+    // Divide the number by 100 and round it to 2 decimal places
+    const formattedAmount = (amount / 100).toFixed(2);
+    // Add commas for every thousand separator
+    return formattedAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
+
   return (
     <div className="mt-8">
       {creditHistory.map((institution, index) => (
@@ -36,7 +44,7 @@ const CreditHistoryTable = ({ creditHistory }) => {
                   <th className="px-4 py-2">Date Opened</th>
                   <th className="px-4 py-2">Closed Date</th>
                   <th className="px-4 py-2">Loan Status</th>
-                  <th className="px-4 py-2">Repayment Amount</th>
+                  <th className="px-4 py-2">Repayment Amount(₦)</th>
                   
                 </tr>
               </thead>
@@ -47,7 +55,7 @@ const CreditHistoryTable = ({ creditHistory }) => {
                     <td className="border px-4 py-2">{historyItem.date_opened}</td>
                     <td className="border px-4 py-2">{historyItem.closed_date}</td>
                     <td className="border px-4 py-2">{historyItem.loan_status}</td>
-                    <td className="border px-4 py-2">{historyItem.repayment_amount}</td>
+                    <td className="border px-4 py-2">{formatRepaymentAmount(historyItem.repayment_amount)}</td>
                   </tr>
                 ))}
               </tbody>

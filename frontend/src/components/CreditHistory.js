@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../config/axiosConfig';
 import RingLoader from "react-spinners/RingLoader";
 import CreditHistoryTable from "../components/CreditHistortTable";
 
@@ -31,7 +31,7 @@ const CreditHistory = () => {
                 throw new Error('User ID not found in sessionStorage');
             }
 
-            const response = await axios.post('/api/credit-history', { userId, provider });
+            const response = await axiosInstance.post('/api/credit-history', { userId, provider });
             const data = response.data;
 
             if (data.status === 'successful') {
@@ -60,7 +60,7 @@ const CreditHistory = () => {
 
     return (
         <div className="bg-white p-6 rounded-lg">
-            <h1 className="text-2xl text-center font-bold mb-4 text-tertiary">Credit History</h1> 
+            <h1 className="text-2xl text-center font-bold mb-4 text-tertiary">Credit History Data</h1> 
             {loading && !creditData && (
                 <div className="inset-0 flex justify-center items-center"> 
                     <RingLoader
