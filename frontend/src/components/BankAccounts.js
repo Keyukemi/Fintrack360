@@ -20,33 +20,26 @@ const AllBankAccounts = () => {
 
 
     const userId = sessionStorage.getItem('userId');
+
     useEffect(() => {
         const fetchData = async () => {
             const storedData = sessionStorage.getItem('userBankAccounts');
             if (storedData) {
                 setUserBankAccounts(JSON.parse(storedData));
             } else {
-                await initiateBankAccountsFetch();
+                await fetchDataFromAPI();
             }
         };
 
         fetchData();
     }, []);
 
-    useEffect(() => {
-        sessionStorage.setItem('userBankAccounts', JSON.stringify(userBankAccounts));
-    }, [userBankAccounts]);
-    const initiateBankAccountsFetch = async () => {
+    const fetchDataFromAPI = async () => {
+        setLoading(true);
+        setError('');
         try {
-            setLoading(true);
-            setError('');
-            if (!userId) {
-                throw new Error('User ID not found in sessionStorage');
-            }
-
             const response = await axios.post('/api/bvn/bank-accounts-fetch', { userId });
             const data = response.data;
-
             if (data.status === 'successful') {
                 setSessionId(data.data.session_id);
                 setVerificationMethods(data.data.methods);
@@ -62,6 +55,14 @@ const AllBankAccounts = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    useEffect(() => {
+        sessionStorage.setItem('userBankAccounts', JSON.stringify(userBankAccounts));
+    }, [userBankAccounts]);
+
+    const initiateBankAccountsFetch = async () => {
+        await fetchDataFromAPI();
     };
 
     const verifyBVN = async () => {
@@ -150,7 +151,7 @@ const AllBankAccounts = () => {
                     </div>
                 ) : (
                     <>
-                        {stage === 'initiateBankAccountsFetch' && userBankAccounts.length === 0 && (
+                        {(stage === 'initiateBankAccountsFetch' || error) && userBankAccounts.length === 0 && (
                             <form onSubmit={handleSubmit}>
                                 <button type="submit" className="bg-tertiary hover:bg-primary text-white font-bold py-2 px-4 rounded">Initiate Bank Account Fetch</button>
                             </form>

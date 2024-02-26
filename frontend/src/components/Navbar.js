@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/fintrack360-logo.png";
-import LinkAccount from "./Account";
+//import LinkAccount from "./Account";
 
 const Navbar = () => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
+  // const toggleModal = () => {
+  //   setShowModal(!showModal);
+  // };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   setShowModal(false);
+  // };
 
   return (
     <header className="bg-headline py-2 px-6 mx-auto">
@@ -27,7 +27,11 @@ const Navbar = () => {
         </Link>
         <nav className="hidden md:block text-paragraph">
           <ul className="flex space-x-4">
-            <li>
+            <li  className="transition duration-300 bg-tertiary text-headline mb-4 font-bold  border-2 rounded-md  p-2
+               hover:bg-primary">
+              Add BVN
+            </li>
+            {/* <li>
               <button
                 onClick={toggleModal}
                 className="transition duration-300 bg-tertiary text-headline mb-4 font-bold  border-2 rounded-md  p-2
@@ -43,7 +47,7 @@ const Navbar = () => {
                  </div>
              </div>
               )}
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

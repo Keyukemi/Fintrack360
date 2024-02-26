@@ -1,5 +1,5 @@
 {
-    "proxy": "https://fintrack360-backend.vercel.app/",
+    "proxy": "http://loca",
     "name": "frontend",
     "version": "0.1.0",
     "private": true,

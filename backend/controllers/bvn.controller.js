@@ -129,7 +129,7 @@ export const verifyBVN = async (req, res) => {
 };
 
 
-//retrieve the details of the BVN
+//retrieve the details of the BVN Identity 
 
 
 export const fetchBVN = async (req, res) => {
@@ -159,6 +159,7 @@ export const fetchBVN = async (req, res) => {
   }
 };
 
+// retrieve details of bank accounts
 export const fetchBankAccounts = async (req, res) => {
   const { otp, userId, sessionId } = req.body;
   if (!otp || !userId) {
