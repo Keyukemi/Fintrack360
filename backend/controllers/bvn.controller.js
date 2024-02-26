@@ -10,7 +10,7 @@ export const initiateBankAccounts = async (req, res) => {
   const {userId} = req.body;
 
   if (!userId) {
-      return res.status(400).json({ error: 'User ID and provider are required.' });
+      return res.status(400).json({ error: 'User ID required' });
   }
 
   try {
