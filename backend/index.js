@@ -11,7 +11,7 @@ const app = express()
 
 //middleware
 // app.use(cors({
-//   origin: 'https://fintrack360.vercel.app'
+//   origin: 'https://fintrack360.onrender.com'
 // }));
 // app.use(cors({origin: "http://localhost:3000"}))
 app.use(cors());
