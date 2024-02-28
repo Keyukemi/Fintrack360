@@ -140,8 +140,7 @@ const AllBankAccounts = () => {
     return (
         <div>
             <h1 className="text-2xl text-center font-bold mb-4 text-tertiary">Bank Accounts Data</h1>
-            <div className="container mx-auto flex justify-center items-center ">
-               
+            <div className="container mx-auto flex justify-center items-center "> 
                 <div className="bg-white p-6 rounded-lg">
                     {loading ? (
                         <div className="text-center">
@@ -182,7 +181,7 @@ const AllBankAccounts = () => {
                                                 {message}
                                             </div>}
                                         <label htmlFor="otp" className="block text-sm font-medium text-gray-700"></label>
-                                        <input type="text" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)}
+                                        <input type="password" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)}
                                             required className="mt-1 p-2 border border-gray-300 text-center rounded-md w-full" placeholder='Input OTP' />
                                     </div>
                                     <button type="submit" className="bg-tertiary hover:bg-primary text-white font-bold py-2 px-4 rounded">Fetch Bank Accounts</button>
