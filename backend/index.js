@@ -10,10 +10,7 @@ import identityRouter from "./routes/identity.route.js"
 const app = express()
 
 //middleware
-// app.use(cors({
-//   origin: 'https://fintrack360.onrender.com'
-// }));
-// app.use(cors({origin: "http://localhost:3000"}))
+
 app.use(cors());
 
 app.use(express.json())
@@ -45,3 +42,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => {
     console.log(error)
   })
+
+  // app.use(cors({
+//   origin: 'https://fintrack360.onrender.com'
+// }));
+// app.use(cors({origin: "http://localhost:3000"}))

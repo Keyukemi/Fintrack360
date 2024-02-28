@@ -151,7 +151,7 @@ const Home = () => {
                                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                                                     <MdOutlineNumbers size={24} className='text-tertiary' />
                                                 </div>
-                                                <input type="text" id="bvn" value={bvn} onChange={(e) => setBvn(e.target.value)}
+                                                <input type="password" id="bvn" value={bvn} onChange={(e) => setBvn(e.target.value)}
                                                     required className="pl-12 pr-4 py-4 border border-gray-300 rounded-md w-full text-center" />
                                                 {errors.bvn && <p className="text-red-500">{errors.bvn}</p>}
                                             </div>
@@ -185,7 +185,7 @@ const Home = () => {
                                 {stage === 'fetchBVN' && (
                                     <div className="mb-4">
                                         {message && <div className='text-sm mb-2 text-red-600'>{message}</div>}
-                                        <input type="text" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required
+                                        <input type="password" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required
                                             className="mt-1 p-4 text-center border border-gray-300 rounded-md w-full" placeholder='Input OTP' />
                                     </div>
                                 )}

@@ -79,7 +79,7 @@ const LinkAccount = ({ onCloseModal }) => {
             </div>
             <div className="mb-4">
               <label htmlFor="accountNumber" className="block mb-2">Enter Account Number:</label>
-              <input type="text" id="accountNumber" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} 
+              <input type="password" id="accountNumber" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} 
               className="w-full px-4 py-2 border rounded-md text-center" />
             </div>
             <button onClick={handleAccountNumberLookup} 
